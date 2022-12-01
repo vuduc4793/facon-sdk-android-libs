@@ -1,0 +1,16 @@
+jdk:
+  - openjdk11
+install:
+  - |
+    cd libs
+    for lib in *; do
+      libName=${lib//.aar/}
+      
+      mvn install:install-file \
+        -Dfile=$lib \
+        -DgroupId=com.fabbi.rnsdk \
+        -DartifactId=$libName \
+        -Dversion=$VERSION \
+        -Dpackaging=aar \
+        -DgeneratePom=true
+    done
